@@ -13,5 +13,7 @@
 	<header>
 		<jsp:include page="/WEB-INF/jsp/layout/header.jsp"></jsp:include>
 	</header>
+	
+	<img src="images/11.png" style="width: 250px; height: 250px;" onclick="window.location.href='boardListPage.do'" />
 </body>
 </html>

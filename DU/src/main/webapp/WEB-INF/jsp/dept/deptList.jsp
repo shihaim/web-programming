@@ -6,9 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>부서 정보</title>
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-<script type="text/javascript" src="js/bootstrap/bootstrap.bundle.js"></script>
 </head>
 <body>
 	<header>
