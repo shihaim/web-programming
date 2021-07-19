@@ -14,7 +14,17 @@
 	<header>
 		<jsp:include page="/WEB-INF/jsp/layout/header.jsp"></jsp:include>
 	</header>
-	<table class="table table-stiped">
+	<div id="filterDiv">
+		<table>
+			<tr>
+				<th>제목</th>
+				<td><input type="text" id="searchTitle" value="<c:out value='${title }'></c:out>" placeholder="제목을 검색하세요" /></td>
+				<td><button type="button" id="searchBtn" class="btn btn-secondary btn-sm">검색</button></td>
+			</tr>
+		</table>
+		<button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='boardWritePage.do'">게시글 등록</button>
+	</div>
+	<table id="dataList" class="table table-stiped">
 		<thead>
 			<tr>
 				<th>번호</th>
@@ -24,9 +34,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${boardList }" var="item">
+			<c:forEach items="${boardList }" var="item" varStatus="status">
 				<tr>
-					<td><c:out value="${item.idx }"></c:out></td>
+					<td><c:out value="${status.count + pagination.startList}"></c:out></td>
 					<td><c:out value="${item.title }"></c:out></td>
 					<td><c:out value="${item.writerName }"></c:out></td>
 					<td><c:out value="${item.registDate }"></c:out></td>
@@ -51,14 +61,47 @@
 	</div>
 </body>
 <script>
+
+	window.onload = function() {
+		var searchTitle = document.getElementById("searchTitle");
+		var searchBtn = document.getElementById("searchBtn");
+		
+		searchTitle.addEventListener("keydown", function(event){
+			if(event.keyCode === 13){
+				searchBtn.click();
+			}
+		})
+		
+		searchBtn.onclick = function() {
+// 			var tr = document.querySelectorAll("#dataList tbody tr");
+			
+// 			for(var item of tr) {
+// 				var title = item.getElementsByTagName('td')[1].innerHTML;
+				
+// 				if(title.includes(searchTitle.value)) {
+// 					item.style.display = "";
+// 				} else {
+// 					item.style.display = "none";
+// 				}
+// 			}
+
+			var url = "boardListPage.do";
+			url = url + "?title=" + searchTitle.value;
+			
+			location.href = url;
+		}
+	}
+	
 	// 이전 버튼 이벤트
 	function fn_prev(page, range, rangeSize) {
 		var page = ((range - 2) * rangeSize) + 1;
 		var range = range - 1;
+// 		var searchTitle = document.getElementById("searchTitle");
 		
 		var url = "boardListPage.do";
 		url = url + "?page=" + page;
 		url = url + "&range=" + range;
+		url = url + "&title=" + searchTitle.value;
 		
 		location.href = url;
 	}
@@ -66,8 +109,11 @@
 	// 페이지 번호 클릭 이벤트
 	function fn_pagination(page, range, rangeSize) {
 		var url = "boardListPage.do";
+// 		var searchTitle = document.getElementById("searchTitle");
+		
 		url = url + "?page=" + page;
 		url = url + "&range=" + range;
+		url = url + "&title=" + searchTitle.value;
 		
 		location.href = url;
 	}
@@ -76,10 +122,12 @@
 	function fn_next(page, range, rangeSize) {
 		var page = parseInt(range * rangeSize) + 1;
 		var range = parseInt(range) + 1;
+// 		var searchTitle = document.getElementById("searchTitle");
 		
 		var url = "boardListPage.do";
 		url = url + "?page=" + page;
 		url = url + "&range=" + range;
+		url = url + "&title=" + searchTitle.value;
 		
 		location.href = url;
 	}
