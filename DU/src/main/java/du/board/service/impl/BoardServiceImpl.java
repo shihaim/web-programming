@@ -36,6 +36,12 @@ public class BoardServiceImpl implements BoardService{
 		
 		return boardDAO.selectBoardListCnt(title);
 	}
+	
+	@Override
+	public BoardVO selectBoard(long idx) {
+		
+		return boardDAO.selectBoard(idx);
+	}
 
 	@Override
 	public void insertBoard(BoardVO board, HttpSession session) {
@@ -46,6 +52,18 @@ public class BoardServiceImpl implements BoardService{
 			board.setWriterId(user.getUserId());
 			boardDAO.insertBoard(board);
 		}
+	}
+
+	@Override
+	public void deleteBoard(long idx) {
+		boardDAO.deleteBoard(idx);
+		
+	}
+
+	@Override
+	public void updateBoard(BoardVO board) {
+		boardDAO.updateBoard(board);
+		
 	}
 	
 }

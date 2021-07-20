@@ -24,7 +24,7 @@
 		</table>
 		<button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='boardWritePage.do'">게시글 등록</button>
 	</div>
-	<table id="dataList" class="table table-stiped">
+	<table id="dataList" class="table table-stiped table-hover">
 		<thead>
 			<tr>
 				<th>번호</th>
@@ -35,7 +35,7 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${boardList }" var="item" varStatus="status">
-				<tr>
+				<tr ondblclick="trDblClick(`${item.idx}`);">
 					<td><c:out value="${status.count + pagination.startList}"></c:out></td>
 					<td><c:out value="${item.title }"></c:out></td>
 					<td><c:out value="${item.writerName }"></c:out></td>
@@ -90,6 +90,13 @@
 			
 			location.href = url;
 		}
+		
+	}
+	
+	function trDblClick(idx) {
+		var url = "boardInfoPage/" + idx + ".do";
+		
+		location.href = url;
 	}
 	
 	// 이전 버튼 이벤트

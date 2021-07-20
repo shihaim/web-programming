@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,6 +53,40 @@ public class BoardController {
 		boardService.insertBoard(board, session);
 		
 		return "redirect:/boardListPage.do";
+	}
+	
+	@RequestMapping("/boardInfoPage/{idx}.do")
+	public ModelAndView boardInfoPage(@PathVariable("idx") long idx) {
+		ModelAndView mav = new ModelAndView("board/boardInfo.jsp");
+		
+		BoardVO board = boardService.selectBoard(idx);
+		mav.addObject("board", board);
+		
+		return mav;
+	}
+	
+	@RequestMapping("/boardDelete.do")
+	public String boardDelete(long idx) {
+		boardService.deleteBoard(idx);
+		
+		return "redirect:/boardListPage.do";
+	}
+	
+	@RequestMapping("/boardModifyPage.do")
+	public ModelAndView boardModifyPage(long idx) {
+		ModelAndView mav = new ModelAndView("board/boardModify.jsp");
+		
+		BoardVO board = boardService.selectBoard(idx);
+		mav.addObject("board", board);
+		
+		return mav;
+	}
+	
+	@RequestMapping("/boardModify.do")
+	public String boardModify(@ModelAttribute BoardVO board) {
+		boardService.updateBoard(board);
+		
+		return "redirect:/boardInfoPage/" + Long.toString(board.getIdx()) + ".do";
 	}
 	
 }

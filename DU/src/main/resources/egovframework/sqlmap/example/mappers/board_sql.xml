@@ -43,6 +43,17 @@
 			</where>
 	</select>
 	
+	<select id="selectBoard" parameterType="long" resultMap="BoardVO">
+		<![CDATA[
+			SELECT
+				B.*, U.`name` AS writer_name
+			FROM
+				tb_board B INNER JOIN tb_user U ON B.writer_id = U.user_id
+			WHERE
+				B.idx = #{idx}
+		]]>
+	</select>
+	
 	<insert id="insertBoard" parameterType="boardMap">
 		<![CDATA[
 			INSERT INTO tb_board
@@ -51,4 +62,26 @@
 				(#{title}, #{content}, #{writerId});
 		]]>
 	</insert>
+	
+	<delete id="deleteBoard" parameterType="long">
+		<![CDATA[
+			DELETE FROM 
+				tb_board 
+			WHERE
+				idx = #{idx}
+		]]>
+	</delete>
+	
+	<update id="updateBoard" parameterType="boardMap">
+		<![CDATA[
+			UPDATE 
+				tb_board
+			SET
+				title = #{title},
+				content = #{content},
+				modify_date = NOW()
+			WHERE
+				idx = #{idx}
+		]]>
+	</update>
 </mapper>

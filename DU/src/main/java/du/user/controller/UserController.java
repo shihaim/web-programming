@@ -59,6 +59,7 @@ public class UserController {
 			ModelAndView mav = new ModelAndView("user/userInfo.jsp");
 			List<DeptVO> dept = deptService.selectDeptList();
 			mav.addObject("dept", dept);
+			
 			return mav;
 		} else {
 			ModelAndView mav = new ModelAndView("main.jsp");

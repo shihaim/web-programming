@@ -12,5 +12,11 @@ public interface BoardService {
 	
 	public int selectBoardListCnt(String title);
 	
+	public BoardVO selectBoard(long idx);
+	
 	public void insertBoard(BoardVO board, HttpSession session);
+	
+	public void deleteBoard(long idx);
+	
+	public void updateBoard(BoardVO board);
 }
