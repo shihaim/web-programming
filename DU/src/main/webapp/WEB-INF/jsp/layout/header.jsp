@@ -15,7 +15,7 @@
 </head>
 <body>
 		<div class="logoDiv">
-			<img alt="대구대학교 로고" src="${pageContext.request.contextPath }/images/symbol_1.jpg" onclick="window.location.href='mainPage.do'">
+			<img alt="대구대학교 로고" src="${pageContext.request.contextPath }/images/symbol_1.jpg" onclick="window.location.href='${pageContext.request.contextPath }/mainPage.do'">
 		</div>
 		<ul class="infoUl">
 			<li><a href="deptPage.do">부서정보</a></li>

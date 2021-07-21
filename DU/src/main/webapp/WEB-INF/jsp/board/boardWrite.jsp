@@ -10,18 +10,22 @@
 	<header>
 		<jsp:include page="/WEB-INF/jsp/layout/header.jsp"></jsp:include>
 	</header>
-	<form action="boardWrite.do" method="post">
+	<form action="boardWrite.do" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title" required/></td>
+				<td><input type="text" name="title" style="width: 100%;" required/></td>
 			</tr>
 			<tr>
 				<th>내용</th>
 				<td><textarea style="width: 100%; height: 100px;" name="content" required></textarea></td>
 			</tr>
+			<tr>
+				<th>첨부파일</th>
+				<td><input type="file" name="attFile" /></td>
+			</tr>
 		</table>
-		<button type="submit" class="btn btn-success">등록</button>
+		<button type="submit" class="btn btn-success btn-sm">등록</button>
 	</form>
 </body>
 </html>
