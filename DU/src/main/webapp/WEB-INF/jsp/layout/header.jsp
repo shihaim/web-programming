@@ -22,8 +22,8 @@
 		</ul>
 		<div class="userInfoDiv">
 			반갑습니다! [<c:out value="${USER.name}"></c:out>]님
-			<button type="button" onClick="window.location.href='logout.do'" class="btn btn-primary btn-sm">로그아웃</button>
-			<button type="button" onClick="window.location.href='userInfoConfirmPage.do'" class="btn btn-outline-primary btn-sm">내정보</button>
+			<button type="button" onClick="window.location.href='${pageContext.request.contextPath }/logout.do'" class="btn btn-primary btn-sm">로그아웃</button>
+			<button type="button" onClick="window.location.href='${pageContext.request.contextPath }/userInfoConfirmPage.do'" class="btn btn-outline-primary btn-sm">내정보</button>
 		</div>
 </body>
 </html>

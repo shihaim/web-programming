@@ -8,5 +8,6 @@
 		<typeAlias alias="deptMap" type="du.dept.domain.DeptVO"/>
 		<typeAlias alias="boardMap" type="du.board.domain.BoardVO"/>
 		<typeAlias alias="BoardAttFileVO" type="du.board.domain.BoardAttFileVO"/>
+		<typeAlias alias="ReplyMap" type="du.reply.domain.ReplyVO"/>
     </typeAliases>
 </configuration>
